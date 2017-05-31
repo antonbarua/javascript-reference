@@ -1,5 +1,16 @@
 # JavaScript Reference
 
+## Arrow Functions
+```javascript
+    () => {...} //no parameter
+    x => {...} //one parameter
+    (x,y) => {...} //multiple parameters
+
+    x => {return x*x;}
+    x => x*x //equivalent to the previous line
+```
+**//TODO: lexical scope**
+
 ## ES6 Modules
 
 *  There is exactly *one* module per file, and one file per module in ES6.
@@ -221,7 +232,6 @@ doTheDishes()
     .catch((error)=>{
 
     });
-
 ```
 
 Inspiration: [JavaScript promises for dummies](https://scotch.io/tutorials/javascript-promises-for-dummies)
@@ -251,7 +261,6 @@ promise
 All promise chains should be appended with a `catch()` clause.
 
 ```javascript
-
 //Here, error thrown by get is handled by handleError.
 //Error thrown by handleSuccess is not handled.
 get()
