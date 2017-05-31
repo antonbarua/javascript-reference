@@ -257,15 +257,15 @@ All promise chains should be appended with a catch clause.
 get()
     .then(handleSuccess, handleError);
 
-//Slightly better approach, error thrown by get and handleSuccess is
+//Slightly better approach, errors thrown by get and handleSuccess are
 //caught by the catch clause.
 get()
     .then(handleSuccess)
     .catch(handleError)
 
 //Combining the two
-//Errors thrown by the original promise operation is handled by the handleGetError in then(). Any processing error in then() is handled in
-//catch().
+//Errors thrown by the original promise operation is handled by the handleGetError in then(). 
+//Any processing error in then() is handled in catch().
 get()
     .then(handleGetSuccess, handleGetError)
     .catch(handleProcessingError)
