@@ -248,7 +248,7 @@ promise
 
 ### Error Handling
 
-All promise chains should be appended with a catch clause.
+All promise chains should be appended with a `catch()` clause.
 
 ```javascript
 
