@@ -244,4 +244,30 @@ promise
     });
 ```
 
-TODO: promise.all()
+**TODO: promise.all()**
+
+### Error Handling
+
+All promise chains should be appended with a catch clause.
+
+```javascript
+
+//Here, error thrown by get is handled by handleError.
+//Error thrown by handleSuccess is not handled.
+get()
+    .then(handleSuccess, handleError);
+
+//Slightly better approach, error thrown by get and handleSuccess is
+//caught by the catch clause.
+get()
+    .then(handleSuccess)
+    .catch(handleError)
+
+//Combining the two
+//Errors thrown by the original promise operation is handled by the handleGetError in then(). Any processing error in then() is handled in
+//catch().
+get()
+    .then(handleGetSuccess, handleGetError)
+    .catch(handleProcessingError)
+
+```
