@@ -104,3 +104,72 @@
    ```
 
 Reference: [An Introduction To JavaScript ES6 Modules](https://strongloop.com/strongblog/an-introduction-to-javascript-es6-modules/)
+
+
+## Promises
+
+### Why Promises?
+
+Let's take a look at the following code examples for adding two numbers.
+
+```javascript
+//Synchronous code
+function add(a, b){
+    return a + b;
+}
+
+console.log(add(1,2)); //3
+
+//Asynchronous, broken code
+let result = addOnRemoteServer(1, 2); //async call, won't return in time
+console.log(result); //undefined
+
+//Asynchronous code
+function addAsync(a, b, callback){
+    setTimeout(function(){
+        callback(a + b);
+    }, 1000);
+}
+
+addAsync(1, 2, function(result){
+    console.log(result); 
+});
+```
+But what if we need to add multiple times?
+
+```javascript
+//Synchronous code
+let resultA = add(1,2); //3
+let resultB = add(resultA, 3); //6
+let resultC = add(resultB, 4); //10
+
+console.log(resultC);
+
+//Asynchronous code
+addAsync(1, 2, function(resultA){//3
+    addAsync(resultA, function(resultB){//6
+        addAsync(resultB, function(resultC){//callback hell/pyramid code
+            console.log(resultC);
+        });
+    });
+});
+
+```
+*Promises to the rescue!*
+
+```javascript
+//instead of returning result, return a promise that a result will be returned
+function addAsync(a, b){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(a + b);
+        }, 1000);
+    });
+}
+
+addAsync(1, 2)
+    .then((resultA)=>{return addAsync(result, 3);})
+    .then((resultB)=>{return addAsync(result, 4);})
+    .then((resultC)=>{console.log(resultC);});
+//NO PYRAMID CODE
+```
