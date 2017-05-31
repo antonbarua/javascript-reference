@@ -223,3 +223,25 @@ doTheDishes()
     });
 
 ```
+
+Inspiration: [JavaScript promises for dummies](https://scotch.io/tutorials/javascript-promises-for-dummies)
+
+`then()` takes two callback functions as arguments. One for success, another for error. Both are optional.
+
+A call to `then()` produces another promise, thus promises can be chained.
+
+```javascript
+let promise = new Promise((resolve, reject)=>{
+     resolve(1);
+});
+
+promise
+    .then((result)=>{
+        return result + 2;
+    })
+    .then((result)=>{
+        console.log(result);//3
+    });
+```
+
+TODO: promise.all()
