@@ -173,3 +173,53 @@ addAsync(1, 2)
     .then((resultC)=>{console.log(resultC);});
 //NO PYRAMID CODE
 ```
+
+### Promises
+
+A *Promise* is an object that may produce a single value in the future. The value can be either a resolved value or the reason why the value could not be resolved (error).
+
+A promise can be in one of three states: pending, resolved, rejected. Callbacks can be assigned to promises to handle the fulfilled value or the error reason.
+
+Promises are *eager*. The task assigned to a promise executes as soon as the constructor is invoked.
+
+```javascript
+//syntax
+let promise = new Promise(/*executor*/ (resolve, reject){...});
+
+//call resolve(resolved_value) when promise is to be fulfilled (success)
+//call reject(reason) when promise is to be broken (error)
+```
+
+Promises are useful for returning results from asynchronous functions.
+
+```javascript
+//dummy example
+function readBook(){...}
+function watchTV(){...}
+
+function doTheDishes(){
+    return new Promise((resolve, reject)=>{//A promise to do the dishes
+
+        tv.onNewSchedule = function(schedule){
+            if(!schedule.gameIsOn){
+                resolve('OK! doing dishes'); //fulfilling promise
+            } else {
+                reject('Nope!'); //breaking the promise
+            }
+        }
+
+        tv.checkSchedule();
+    }
+}
+
+doTheDishes()
+    .then((result)=>{
+        console.log(result);//OK! doing dishes
+    },(error)=>{
+        console.log(error);//Nope!
+    })
+    .catch((error)=>{
+
+    });
+
+```
